@@ -63,15 +63,14 @@ const evaluteExpression=(expression)=>{
     }
   };
   const applyBodmas = (tokens,operators)=>{
-    for(let i=0;i<operators.length;i++){
-      const currOperator = operators[i];
+    
       for(let j=1;j<tokens.length;j+=2){
-        if(tokens[j]==currOperator){
-          const result = operate(tokens[j-1],currOperator,tokens[j+1]);
+        if(operators.includes(tokens[j])){
+          const result = operate(tokens[j-1],tokens[j],tokens[j+1]);
           tokens.splice(j-1,3,result);
           j-=2;
         }
-      }
+      
     }
   };
   applyBodmas(tokens,["*","/"]);
